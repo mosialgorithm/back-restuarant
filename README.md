@@ -1,1 +1,1 @@
-## this project by name of dashboard is developed by flask, mysql, htmx, alpinejs, bootstrap in 403 shamsi
+## this project by name of restaurant is developed by flask, mysql, alpinejs, bootstrap@5 in 1404 shamsi
