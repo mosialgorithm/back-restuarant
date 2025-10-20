@@ -1,0 +1,158 @@
+{% extends 'home/index.html' %}
+{% block title %}  منوی غذا {% endblock %}
+{% block content %}
+    <!-- banner -->
+    <section id="banner">
+        <div class="banner-color"></div>
+        <img src="{{url_for('static', filename='images/wide/banner-2.jpg')}}" alt="">
+     </section>
+    <!-- end banner -->
+
+    <!-- images banner -->
+    {% include 'home/partials/images-banner.html' %}
+    <!-- end images banner -->
+
+    <!-- list menu -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-12">
+                    <p class="list-title"><span> لیست غذاهای اصلی  </span></p>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="buy-item">
+                        <div href="#" class="box-list">
+                            <div class="box-color"></div>
+                            <p class="box-title"><span> چلو ماهی</span></p>
+                            <img src="{{url_for('static', filename='images/wide/food-8.jpg')}}" class="img-fluid" alt="">
+
+                        </div>
+                        <div class="buy my-1">
+                            <div class="d-flex justify-content-between my-2">
+                                <div class="">
+                                    <span class="text text-danger fw-bold text-decoration-line-through">
+                                        <i>۲۵۹۰۰۰</i>
+                                        <i>تومان</i>
+                                    </span>
+                                    <span class="badge bg-danger mx-2 fw-bold">
+                                        <i class="fa fa-percent"></i>
+                                        <i>20</i>
+                                    </span>
+                                </div>
+                                <span class="text text-success mx-2 fw-bold">
+                                    <i>۳۵۹۰۰۰</i>
+                                    <i>تومان</i>
+                                </span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-center">
+                                <input type="number" min="1" max="10" value="1" class="form-control w-25">
+                                <button class="btn btn-outline-success">سفارش</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="buy-item">
+                        <div href="#" class="box-list">
+                            <div class="box-color"></div>
+                            <p class="box-title"><span> چلو ماهی</span></p>
+                            <img src="{{url_for('static', filename='images/wide/food-8.jpg')}}" class="img-fluid" alt="">
+
+                        </div>
+                        <div class="buy my-1">
+                            <div class="d-flex justify-content-between my-2">
+                                <div class="">
+                                    <span class="text text-danger fw-bold text-decoration-line-through">
+                                        <i>۲۵۹۰۰۰</i>
+                                        <i>تومان</i>
+                                    </span>
+                                    <span class="badge bg-danger mx-2 fw-bold">
+                                        <i class="fa fa-percent"></i>
+                                        <i>20</i>
+                                    </span>
+                                </div>
+                                <span class="text text-success mx-2 fw-bold">
+                                    <i>۳۵۹۰۰۰</i>
+                                    <i>تومان</i>
+                                </span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-center">
+                                <input type="number" min="1" max="10" value="1" class="form-control w-25">
+                                <button class="btn btn-outline-success">سفارش</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="buy-item">
+                        <div href="#" class="box-list">
+                            <div class="box-color"></div>
+                            <p class="box-title"><span> چلو ماهی</span></p>
+                            <img src="{{url_for('static', filename='images/wide/food-8.jpg')}}" class="img-fluid" alt="">
+
+                        </div>
+                        <div class="buy my-1">
+                            <div class="d-flex justify-content-between my-2">
+                                <div class="">
+                                    <span class="text text-danger fw-bold text-decoration-line-through">
+                                        <i>۲۵۹۰۰۰</i>
+                                        <i>تومان</i>
+                                    </span>
+                                    <span class="badge bg-danger mx-2 fw-bold">
+                                        <i class="fa fa-percent"></i>
+                                        <i>20</i>
+                                    </span>
+                                </div>
+                                <span class="text text-success mx-2 fw-bold">
+                                    <i>۳۵۹۰۰۰</i>
+                                    <i>تومان</i>
+                                </span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-center">
+                                <input type="number" min="1" max="10" value="1" class="form-control w-25">
+                                <button class="btn btn-outline-success">سفارش</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="buy-item">
+                        <div href="#" class="box-list">
+                            <div class="box-color"></div>
+                            <p class="box-title"><span> چلو ماهی</span></p>
+                            <img src="{{url_for('static', filename='images/wide/food-8.jpg')}}" class="img-fluid" alt="">
+
+                        </div>
+                        <div class="buy my-1">
+                            <div class="d-flex justify-content-between my-2">
+                                <div class="">
+                                    <span class="text text-danger fw-bold text-decoration-line-through">
+                                        <i>۲۵۹۰۰۰</i>
+                                        <i>تومان</i>
+                                    </span>
+                                    <span class="badge bg-danger mx-2 fw-bold">
+                                        <i class="fa fa-percent"></i>
+                                        <i>20</i>
+                                    </span>
+                                </div>
+                                <span class="text text-success mx-2 fw-bold">
+                                    <i>۳۵۹۰۰۰</i>
+                                    <i>تومان</i>
+                                </span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-center">
+                                <input type="number" min="1" max="10" value="1" class="form-control w-25">
+                                <button class="btn btn-outline-success">سفارش</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end list menu -->
+{% endblock %}

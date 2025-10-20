@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="IR-fa" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Restaurant Website">
+    <meta name="developer" content="MosiWeb.ir">
+    <meta name="keyword" content="Flask Bootstrap5 ">
+    <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
+    <title>
+        کافه رستوران میم || {% block title %}{% endblock %}
+    </title>
+
+    <!-- styles config -->
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/bootstrap-reboot.rtl.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/bootstrap.rtl.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/style.css')}}">
+</head>
+
+<body>{% block base_content %}{% endblock %}</body>
+<!-- scripts config -->
+<script src="{{url_for('static', filename='scripts/bootstrap.bundle.min.js')}}"></script>
+<!-- Plugins and scripts addedd by developer -->
+<script src="{{url_for('static', filename='scripts/axios.min.js')}}"></script>
+<script src="{{url_for('static', filename='scripts/moment.min.js')}}"></script>
+<script src="{{url_for('static', filename='scripts/sweetalert2.min.js')}}"></script>
+<script src="{{url_for('static', filename='scripts/alpine.min.js')}}"></script>
+<script src="{{url_for('static', filename='scripts/jalali-moment.js')}}"></script>
+<script>
+    moment.locale('fa');
+    moment().format();//
+</script>
+<!-- <script defer src="{{url_for('static', filename='scripts/store.js')}}"></script>
+<script defer src="{{url_for('static', filename='scripts/app.js')}}"></script> -->
+
+
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+</script>
+
+</html>

@@ -1,0 +1,155 @@
+{% extends 'home/index.html' %}
+{% block title %} خرید و پرداخت {% endblock %}
+{% block content %}
+<!-- cart -->
+    <section id="cart">
+        <div class="container">
+            <div class="row g-2">
+                <div class="col-12">
+                    <p class="title">لیست نهایی خرید</p>
+                </div>
+                <div class="col-sm-12 col-md-9" id="cart-order">
+                    <div class="table-responsive mt-2">
+                        <table class="table table-hover table-borderless table-sm table-responsive align-middle">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">عکس</th>
+                                    <th scope="col">نام</th>
+                                    <th scope="col">قیمت </th>
+                                    <th scope="col">تخفیف </th>
+                                    <th scope="col">تعداد </th>
+                                    <th scope="col">قیمت نهایی </th>
+                                    <th scope="col">عملیات </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>
+                                        <img src="{{url_for('static', filename='images/wide/food-3.jpg')}}" class="img-fluid" alt="">
+                                    </td>
+                                    <td>ماهی پلو</td>
+                                    <td>
+                                        <span>۳۲۰۰۰۰</span>
+                                        <span>تومان</span>
+                                    </td>
+                                    <td>
+                                        <span class="fa fa-percent"></span>
+                                        <span>5</span>
+                                    </td>
+                                    <td>
+                                        <a class="fa fa-plus text-success"></a>
+                                        <span class="fw-bold">3</span>
+                                        <a class="fa fa-minus text-danger"></a>
+                                    </td>
+                                    <td>
+                                        <span>۳۲۰۰۰۰۰</span>
+                                        <span>تومان</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-danger">حذف</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>
+                                        <img src="{{url_for('static', filename='images/wide/food-3.jpg')}}" class="img-fluid" alt="">
+                                    </td>
+                                    <td>ماهی پلو</td>
+                                    <td>
+                                        <span>۳۲۰۰۰۰</span>
+                                        <span>تومان</span>
+                                    </td>
+                                    <td>
+                                        <span class="fa fa-percent"></span>
+                                        <span>5</span>
+                                    </td>
+                                    <td>
+                                        <a class="fa fa-plus text-success"></a>
+                                        <span class="fw-bold">3</span>
+                                        <a class="fa fa-minus text-danger"></a>
+                                    </td>
+                                    <td>
+                                        <span>۳۲۰۰۰۰۰</span>
+                                        <span>تومان</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-danger">حذف</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>
+                                        <img src="{{url_for('static', filename='images/wide/food-3.jpg')}}" class="img-fluid" alt="">
+                                    </td>
+                                    <td>ماهی پلو</td>
+                                    <td>
+                                        <span>۳۲۰۰۰۰</span>
+                                        <span>تومان</span>
+                                    </td>
+                                    <td>
+                                        <span class="fa fa-percent"></span>
+                                        <span>5</span>
+                                    </td>
+                                    <td>
+                                        <a class="fa fa-plus text-success"></a>
+                                        <span class="fw-bold">3</span>
+                                        <a class="fa fa-minus text-danger"></a>
+                                    </td>
+                                    <td>
+                                        <span>۳۲۰۰۰۰۰</span>
+                                        <span>تومان</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-danger">حذف</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3" id="cart-payment">
+                    <div id="price" class="text text-primary d-flex justify-content-between">
+                        <p>
+                            <span class="fa fa-dollar"></span>
+                            <span>قیمت محصولات</span>
+                        </p>
+                        <p>
+                            <span>320000</span>
+                            <span>تومان</span>
+                        </p>
+                    </div>
+                    <hr>
+                    <div id="discount" class="text text-danger d-flex justify-content-between">
+                        <p>
+                            <span class="fa fa-percent"></span>
+                            <span>سود شما</span>
+                        </p>
+                        <p>
+                            <span>320000</span>
+                            <span>تومان</span>
+                        </p>
+                    </div>
+                    <hr>
+                    <div id="total-price" class="text text-success ">
+                        <div class="d-flex justify-content-between">
+                            <p>
+                                <span class="fa fa-money"></span>
+                                <span>قیمت نهایی</span>
+                            </p>
+                            <p>
+                                <span>320000</span>
+                                <span>تومان</span>
+                            </p>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-outline-success">تایید و پرداخت</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end cart -->
+{% endblock %}

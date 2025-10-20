@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block title %}صفحه ثبت نام{% endblock %}
+{% block base_content %}
+<section id="authentication" class="container">
+    <div class="row">
+        <div class="col-12 col-md-4 offset-md-4">
+            <div class="auth">
+                <div class="auth-header">
+                    <img src="{{url_for('static', filename='images/png/logo.png')}}" alt="logo">
+                    <p>
+                        <span class="fa fa-pencil-square-o me-1"></span>
+                        <span>ثبت نام</span>
+                    </p>
+                </div>
+                <div class="auth-body">
+                    <form x-data="register">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fa fa-user-circle-o"></i>
+                            </span>
+                            <input x-model="user.full_name" @blur="validateFullName" type="text"  class="form-control" :class="{'is-valid': userError.full_name == false, 'is-invalid': userError.full_name}" placeholder="نام و نام خانوادگی">
+                            <div x-show ="!userError.full_name" x-text="userError.full_name_message" class="valid-feedback" ></div>
+                            <div x-show="userError.full_name" x-text="userError.full_name_message" class="invalid-feedback"></div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fa fa-phone-square"></i>
+                            </span>
+                            <input x-model="user.mobile" @blur="validateMobile" type="text" class="form-control" :class="{'is-valid': userError.mobile == false, 'is-invalid': userError.mobile}" placeholder="شماره همراه">
+                            <div x-show ="!userError.mobile" x-text="userError.mobile_message" class="valid-feedback" ></div>
+                            <div x-show="userError.mobile" x-text="userError.mobile_message" class="invalid-feedback"></div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fa fa-key"></i>
+                            </span>
+                            <input x-model="user.password" @blur="validatePassword" type="text" class="form-control" :class="{'is-valid': userError.password == false, 'is-invalid': userError.password}" placeholder="گذرواژه">
+                            <div x-show ="!userError.password" x-text="userError.password_message" class="valid-feedback" ></div>
+                            <div x-show="userError.password" x-text="userError.password_message" class="invalid-feedback"></div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fa fa-key"></i>
+                            </span>
+                            <input x-model="user.confirm_password" @blur="validateConfirmPassword" type="text" class="form-control" :class="{'is-valid': userError.confirm_password == false, 'is-invalid': userError.confirm_password}" placeholder="تکرار گذرواژه">
+                            <div x-show ="!userError.confirm_password" x-text="userError.confirm_password_message" class="valid-feedback" ></div>
+                            <div x-show="userError.confirm_password" x-text="userError.confirm_password_message" class="invalid-feedback"></div>
+                        </div>
+                        <div class="text-center">
+                            <button @click.prevent="registerForm" class="btn btn-outline-danger w-50">ثبت اطلاعات</button>
+                        </div>
+                        <p x-show="result == true" class="alert alert-success text-center my-1">ثبت نام شما با موفقیت انجام شد</p>
+                        <p x-show="result == false" class="alert alert-danger text-center my-1">خطایی رخ داده است، دوباره تلاش کنید</p>
+                    </form>
+                    <div class="mt-5">
+                        <div class="text-center my-3">
+                            <a href="{{url_for('auth.login_view')}}" class="text text-success w-50"> قبلا ثبت نام کرده ام </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    document.addEventListener('alpine:init', () => {
+    Alpine.data('register', () => ({
+        formValid:false,
+        result: null,
+        user: {
+            full_name: '',
+            mobile: '',
+            password: '',
+            confirm_password: '',
+        },
+        userError:{
+            full_name: null,
+            full_name_message: null,
+            mobile: null,
+            mobile_message: null,
+            password: null,
+            password_message: null,
+            confirm_password: null,
+            confirm_password_message: null,
+        },
+        validateFullName(){
+            if(this.user.full_name.trim().length == ''){
+                this.userError.full_name = true
+                this.userError.full_name_message = 'لطفا نام و نام خانوادگی خود را صحیح وارد نمایید'
+                return false
+            } else if(this.user.full_name.trim().length <= 5){
+                this.userError.full_name = true
+                this.userError.full_name_message = 'لطفا نام و نام خانوادگی خود را کامل وارد نمایید'
+                return false
+            } else{
+                this.userError.full_name = false
+                this.userError.full_name_message = 'معتبر است'
+                return true
+            }
+            
+        },
+        validateMobile(){
+            if(this.user.mobile.trim().length != 11){
+                this.userError.mobile = true
+                this.userError.mobile_message = 'لطفا شماره همراه خود را کامل و صحیح وارد نمایید'
+                return false
+            } else if(this.user.mobile.trim()[0] != '0'){
+                this.userError.mobile = true
+                this.userError.mobile_message = 'شماره همراه باید با صفر شروع شود'
+                return false
+            }
+            else{
+                this.userError.mobile = false
+                this.userError.mobile_message = 'معتبر است'
+                return true
+            }
+        },
+        validatePassword(){
+            if(this.user.password.trim().length <= 8){
+                this.userError.password = true
+                this.userError.password_message = 'گذرواژه شما باید بیشتر از ۸ کاراکتر باشد'
+                return false
+            }
+            else{
+                this.userError.password = false
+                this.userError.password_message = 'معتبر است'
+                return true
+            }
+        },
+        validateConfirmPassword(){
+            if(this.user.confirm_password.trim().length <= 8){
+                this.userError.confirm_password = true
+                this.userError.confirm_password_message = 'گذرواژه شما باید بیشتر از ۸ کاراکتر باشد'
+                return false
+            } else if(this.user.confirm_password.trim() != this.user.password.trim()){
+                this.userError.confirm_password = true
+                this.userError.confirm_password_message = 'گذرواژه و تکرار گذرواژه یکسان نمی باشند'
+                return false
+            }
+            else{
+                this.userError.confirm_password = false
+                this.userError.confirm_password_message = 'یکسان است'
+                return true
+            }
+        },
+        
+        async registerForm() {
+            if(this.validateFullName() && this.validateMobile() && this.validatePassword() && this.validateConfirmPassword()){
+                const postData = {
+                    full_name: this.user.full_name,
+                    mobile: this.user.mobile,
+                    password: this.user.password,
+                }
+                const response = await axios.post("{{url_for('auth.register_view')}}", postData)
+                console.log(response.data)
+                if(response.data.status == 'success'){
+                    this.result = true
+                    window.location.href = "{{url_for('auth.login_view')}}"
+                } else{
+                    this.result = false
+                }
+                setTimeout(() => {this.result = null}, 3000)
+            }
+            
+        }
+    }))
+})
+</script>
+{% endblock %}

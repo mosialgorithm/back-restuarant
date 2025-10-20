@@ -1,0 +1,384 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<!-- <script src="{{url_for('static', filename='scripts/store.js')}}"></script> -->
+<!-- info-box -->
+<section id="info-box">
+    <div class="container">
+        <div class="row g-2">
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="box d-flex justify-content-between align-items-center">
+                    <div class="title d-flex flex-column justify-content-center align-items-center">
+                        <span class="fa fa-thumbs-up fa-2x"></span>
+                        <span>بیشترین سفارش</span>
+                    </div>
+                    <div class="message d-flex flex-column justify-content-center align-items-center">
+                        <span class="fw-bold">سوشی</span>
+                        <span class="mt-2">
+                            <i class="fw-bold">۱۰۰</i>
+                            <i>عدد</i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="box d-flex justify-content-between align-items-center">
+                    <div class="title d-flex flex-column justify-content-center align-items-center">
+                        <span class="fa fa-thumbs-down fa-2x"></span>
+                        <span> کمترین سفارش</span>
+                    </div>
+                    <div class="message d-flex flex-column justify-content-center align-items-center">
+                        <span class="fw-bold">سوشی</span>
+                        <span class="mt-2">
+                            <i class="fw-bold">۱۰</i>
+                            <i>عدد</i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="box d-flex justify-content-between align-items-center">
+                    <div class="title d-flex flex-column justify-content-center align-items-center">
+                        <span class="fa fa-money fa-2x"></span>
+                        <span> گرانترین موجودی</span>
+                    </div>
+                    <div class="message d-flex flex-column justify-content-center align-items-center">
+                        <span class="fw-bold">پلو گردن گوسفندی مجلسی</span>
+                        <span class="mt-2">
+                            <i class="fw-bold">۳۰۰۰۰۰۰</i>
+                            <i>تومان</i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="box d-flex justify-content-between align-items-center">
+                    <div class="title d-flex flex-column justify-content-center align-items-center">
+                        <span class="fa fa-dollar fa-2x"></span>
+                        <span>ارزانترین موجودی</span>
+                    </div>
+                    <div class="message d-flex flex-column justify-content-center align-items-center">
+                        <span class="fw-bold">قهوه اسپرسو</span>
+                        <span class="mt-2">
+                            <i class="fw-bold">۷۵۰۰۰</i>
+                            <i>تومان</i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end info-box -->
+<!-- user info -->
+<section class="mt-5">
+    <div class="container">
+        <div class="row g-3">
+            <div class="col-12 col-md-6 col-xl-4">
+                <div class="user-info">
+                    <div x-data="user_info" class="box">
+                        <p class="title">
+                            <span class="fa fa-user-circle-o"></span>
+                            <!-- <span x-text="person.full_name"></span> -->
+                            <span>اطلاعات کامل کاربر</span>
+                        </p>
+                        <div class="information" style="overflow: hidden;">
+                            <!-- avatar -->
+                            <div class="mb-3 row">
+                                <div class="col-12 text-center">
+                                    <input class="form-control form-control-sm" x-ref="fileInput" type="file"
+                                        accept="image/*" hidden @change="upload_avatar($event.target.files[0])">
+                                    <a @click="$refs.fileInput.click()" href="#">
+                                        <img :src="person.avatar" class="img-fluid" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-5 col-form-label">
+                                    <span class="fa fa-pencil-square-o"></span>
+                                    <span>نام و نام خانوادگی</span>
+                                </label>
+                                <div class="col-7 info">
+                                    <p x-show="!edit" x-text="person.full_name"></p>
+                                    <input x-show="edit" x-model="person.full_name" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-5 col-form-label">
+                                    <span class="fa fa-phone-square"></span>
+                                    <span>شماره همراه</span>
+                                </label>
+                                <div class="col-7 info">
+                                    <p x-text="person.mobile"></p>
+                                    <!-- <input x-show="edit" x-model="person.mobile" type="text" class="form-control"> -->
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-5 col-form-label">
+                                    <span class="fa fa-envelope-o"></span>
+                                    <span> ایمیل</span>
+                                </label>
+                                <div class="col-7 info">
+                                    <p x-show="!edit" x-text="person.email"></p>
+                                    <input x-show="edit" x-model="person.email" type="text" :value="person.email"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-5 col-form-label">
+                                    <span x-show="!edit && person.gender == true" class="fa fa-male"></span>
+                                    <span x-show="!edit && person.gender == false" class="fa fa-female"></span>
+                                    <span x-show="edit" class="fa fa-genderless"></span>
+                                    <span> جنسیت</span>
+                                </label>
+                                <div x-show="!edit" class="col-6 info">
+                                    <p x-show="person.gender == true">آقا</p>
+                                    <p x-show="person.gender == false">خانم</p>
+                                </div>
+                                <div x-show="edit" class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <input x-model="person.gender" class="form-check-input" id="male" type="radio"
+                                            name="gender" value="true" checked>
+                                        <label class="form-check-label" for="male">آقا</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input x-model="person.gender" class="form-check-input" id="female" type="radio"
+                                            name="gender" value="false">
+                                        <label class="form-check-label" for="female">خانم</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-5 col-form-label">
+                                    <span class="fa fa-handshake-o"></span>
+                                    <span> نقش کاربر</span>
+                                </label>
+                                <div x-show="!edit" class="col-6 info">
+                                    <p x-show="person.role == 0" class="badge bg-danger">سوپریوزر</p>
+                                    <p x-show="person.role == 1" class="badge bg-success">ادمین</p>
+                                    <p x-show="person.role == 2" class="badge bg-secondary">کارمند</p>
+                                    <p x-show="person.role == 3" class="badge bg-secondary">مشتری</p>
+                                    <p x-show="person.role == 4" class="badge bg-secondary">میهمان</p>
+                                </div>
+                                <div x-show="edit" class="col-6">
+                                    <select x-model="person.role" class="form-control">
+                                        <option value="1">ادمین</option>
+                                        <option value="2">کارمند</option>
+                                        <option value="3">مشتری</option>
+                                        <option value="4">میهمان</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-5 col-form-label">
+                                    <span class="fa fa-calendar"></span>
+                                    <span> تاریخ عضویت</span>
+                                </label>
+                                <div class="col-7 info">
+                                    <p x-text="moment(person.created_at).fromNow()"></p>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="col-12 text-center">
+                                    <button @click.prevent="toggle" x-show="!edit"
+                                        class="btn btn-sm btn-outline-info">ویرایش</button>
+                                    <button @click.prevent="update_user" x-show="edit"
+                                        class="btn btn-sm btn-outline-success">ذخیره و بروزرسانی</button>
+                                    <button @click.prevent="toggle" x-show="edit"
+                                        class="btn btn-sm btn-outline-danger">انصراف</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4">
+                <div class="list">
+                    <div class="box">
+                        <p class="title">
+                            <span class="fa fa-rocket me-1"></span>
+                            <span>آخرین سفارشات</span>
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">عکس</th>
+                                        <th scope="col">نام</th>
+                                        <th scope="col">تعداد</th>
+                                        <th scope="col">قیمت</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src="{{url_for('static', filename='images/wide/food-4.jpg')}}"
+                                                class="img-fluid" width="100" alt="">
+                                        </td>
+                                        <td>ماهی پلو</td>
+                                        <td>۲</td>
+                                        <td>
+                                            <span>۲۵۰۰۰۰</span>
+                                            <span>تومان</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="{{url_for('static', filename='images/wide/food-6.jpg')}}"
+                                                class="img-fluid" width="100" alt="">
+                                        </td>
+                                        <td>ماهی پلو</td>
+                                        <td>۲</td>
+                                        <td>
+                                            <span>۲۵۰۰۰۰</span>
+                                            <span>تومان</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="{{url_for('static', filename='images/wide/food-5.jpg')}}"
+                                                class="img-fluid" width="100" alt="">
+                                        </td>
+                                        <td>ماهی پلو</td>
+                                        <td>۲</td>
+                                        <td>
+                                            <span>۲۵۰۰۰۰</span>
+                                            <span>تومان</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="#" class="d-flex flex-row-reverse">
+                            <span class="fa fa-plus-square fa-lg"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4">
+                <div class="list">
+                    <div class="box">
+                        <p class="title">
+                            <span class="fa fa-bar-chart"></span>
+                            <span>وضعیت خرید شما</span>
+                        </p>
+                        <div class="chart">
+                            <canvas id="allProductChart" width="100vw"></canvas>
+                        </div>
+                        <a href="#" class="d-flex flex-row-reverse">
+                            <span class="fa fa-plus-square fa-lg"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end user info -->
+<script>
+    function user_info() {
+        return {
+            //imgUrl: `/static/${person.avatar}`,
+            edit: false,
+            person: {},
+
+            toggle() {
+                this.edit = !this.edit
+                //console.log(this.edit)
+            },
+            update_person() {
+                setTimeout(() => { this.person = Alpine.store('user').current_user }, 100)
+            },
+
+            init() {
+                this.update_person()
+            },
+
+            async update_user() {
+                console.log(this.person)
+                const response = await axios.post("{{url_for('admin.update_user')}}", this.person)
+                const result = response.data
+                console.log('result : ', result)
+                if (result.status == 'success') {
+                    Alpine.store('user').fetchData()
+                    setTimeout(() => { this.update_person() }, 500)
+                    this.edit = false
+                    Toast.fire({
+                        icon: result.status,
+                        title: result.message
+                    });
+                } else {
+                    Toast.fire({
+                        icon: result.status,
+                        title: result.message
+                    });
+                }
+            },
+
+            async upload_avatar(file) {
+                console.log('upload avatar btn is clicked')
+                avatar_file = file
+                console.log(avatar_file)
+                const formData = new FormData()
+                formData.append('avatar_file', avatar_file)
+                const response = await axios.post("{{url_for('admin.upload_avatar')}}", formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                })
+                const result = response.data
+                console.log(result)
+                if (result.status == 'success') {
+                    Toast.fire({
+                        icon: result.status,
+                        title: result.message
+                    });
+                    Alpine.store('user').fetchData()
+                    setTimeout(() => { this.update_person() }, 500)
+                }
+                else {
+                    Toast.fire({
+                        icon: result.status,
+                        title: result.message
+                    });
+                }
+
+            }
+        }
+    }
+</script>
+
+<script src="{{url_for('static', filename='scripts/chart.js')}}"></script>
+<script>
+    const ctxx = document.getElementById('allProductChart');
+
+    new Chart(ctxx, {
+        type: 'doughnut',
+        data: {
+            labels: [
+                'غذای اصلی',
+                'بستنی ها',
+                'قهوه جات',
+                ' نوشیدنی سرد',
+                ' نوشیدنی گرم',
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [300, 50, 100, 80, 30],
+                backgroundColor: [
+                    '#ef476f',
+                    '#06d6a0',
+                    '#073b4c87',
+                    '#ffd166',
+                    '#073b4c',
+                    '#073b4c87',
+                ],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            Response: true
+        },
+
+    });
+</script>
+{% endblock %}
+:src=`/static/${person.avatar}`

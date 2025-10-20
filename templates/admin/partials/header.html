@@ -1,0 +1,85 @@
+<!-- nav -->
+    <section x-data="nav" id="nav" class="my-3">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light dashboard">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
+                        aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <img src="{{url_for('static', filename='images/png/logo.png')}}" width="50px" alt="">
+                    </a>
+                    <div class="collapse navbar-collapse" id="navbar">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="./dashboard.html"> داشبورد</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    مدیریت کاربران
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="./menu.html">اطلاعات من</a></li>
+                                    <li><a class="dropdown-item" href="./menu.html">لیست کاربران </a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="./menu.html"> اضافه کردن کاربر </a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    مدیریت رستوران
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="./menu.html"> صفحه اصلی</a></li>
+                                    <li><a class="dropdown-item" href="./menu.html"> غذای اصلی</a></li>
+                                    <li><a class="dropdown-item" href="./menu.html"> هم غذا </a></li>
+                                    <li><a class="dropdown-item" href="./menu.html"> پیش غذا </a></li>
+                                    <li><a class="dropdown-item" href="./menu.html"> کیک و شیرینی </a></li>
+                                    <li><a class="dropdown-item" href="./menu.html"> بستنی </a></li>
+                                    <li><a class="dropdown-item" href="./menu.html"> فراپه و میلک شیک </a></li>
+                                    <li><a class="dropdown-item" href="./menu.html"> آبمیوه و اسموتی </a></li>
+                                    <li><a class="dropdown-item" href="./menu.html">دمنوش </a></li>
+                                    <li><a class="dropdown-item" href="./menu.html">سردنوش </a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="./about-us.html">آشنایی با همکاران</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="./contact-us.html" tabindex="-1" aria-disabled="true">تماس با
+                                    ما</a>
+                            </li>
+                        </ul>
+                        
+                        <div id="shortcut-icon" class="d-flex">
+                            <a href="#" class="avatar">
+                                <!-- <img src="{{url_for('static', filename='images/avatar/1.jpg')}}" alt=""> -->
+                                <!-- <img src="{{url_for('static', filename=current_user.avatar)}}" alt=""> -->
+                                <!-- <img :src=`/static/${$store.user.current_user.avatar}` alt=""> -->
+                                <img :src="$store.user.current_user.avatar" alt="">
+                            </a>
+                            <a 
+                            x-data="logout" 
+                            @click.prevent="logout" 
+                            class="exit" 
+                            data-bs-toggle="tooltip" 
+                            data-bs-placement="top" 
+                            title="خروج"
+                            style="cursor: pointer;">
+                                <span class="fa fa-power-off fa-lg mx-3"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
+    <!-- end nav -->

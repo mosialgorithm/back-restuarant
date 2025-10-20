@@ -1,0 +1,73 @@
+<!-- footer -->
+    <section id="footer">
+        <div class="box-footer dashboard">
+            <div class="developer">
+                <p>
+                    <span>طراحی و توسعه</span>
+                    <a href="https://www.mosiweb.ir">MosiWeb</a>
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- end footer -->
+
+    <script>
+        const ctx = document.getElementById('bestSaleChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['کباب کوبیده', 'قهوه اسپرسو', 'ماهی پلو', 'بستنی سنتی', 'موهیتو', 'پیتزا مخصوص'],
+                datasets: [{
+                    label: 'درصد بیشترین سفارش ها',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1,
+                    backgroundColor: [
+                        '#118ab2'
+                    ]
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                Response: true,
+            }
+        });
+    </script>
+
+    <script>
+        const ctxx = document.getElementById('allProductChart');
+
+        new Chart(ctxx, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    'غذای اصلی',
+                    'بستنی ها',
+                    'قهوه جات',
+                    ' نوشیدنی سرد',
+                    ' نوشیدنی گرم',
+                ],
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: [300, 50, 100, 80, 30],
+                    backgroundColor: [
+                        '#ef476f',
+                        '#06d6a0',
+                        '#073b4c87',
+                        '#ffd166',
+                        '#073b4c',
+                        '#073b4c87',
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                Response: true
+            },
+
+        });
+    </script>

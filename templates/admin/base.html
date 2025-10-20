@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %} داشبورد {% endblock %}
+{% block base_content %}
+<script src="{{url_for('static', filename='scripts/store.js')}}"></script>
+<script src="{{url_for('static', filename='scripts/app.js')}}"></script>
+{% include 'admin/partials/header.html' %}
+{% block content %}{% endblock %}
+{% include 'admin/partials/footer.html' %}
+{% endblock %}

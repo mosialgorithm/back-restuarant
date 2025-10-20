@@ -1,0 +1,95 @@
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('login', () => ({
+            user: {
+                mobile: null,
+                password: null
+            },
+            userError: {
+                mobile: null,
+                mobile_message: null,
+                password: null,
+                password_message: null,
+            },
+            validateMobile() {
+                if (this.user.mobile == null || this.user.mobile.trim() == '') {
+                    this.userError.mobile = true
+                    this.userError.mobile_message = 'لطفا شماره همراه خود را کامل و صحیح وارد نمایید'
+                    return false
+                } else if (this.user.mobile.trim().length != 11) {
+                    this.userError.mobile = true
+                    this.userError.mobile_message = 'لطفا شماره همراه خود را کامل و صحیح وارد نمایید'
+                    return false
+                } else if (this.user.mobile.trim()[0] != '0') {
+                    this.userError.mobile = true
+                    this.userError.mobile_message = 'شماره همراه باید با صفر شروع شود'
+                    return false
+                }
+                else {
+                    this.userError.mobile = false
+                    this.userError.mobile_message = ''
+                    return true
+                }
+            },
+            validatePassword() {
+                if (this.user.password == null || this.user.password.trim == '') {
+                    this.userError.password = true
+                    this.userError.password_message = 'گذرواژه شما باید بیشتر از ۸ کاراکتر باشد'
+                    return false
+                } else if (this.user.password.trim().length <= 8) {
+                    this.userError.password = true
+                    this.userError.password_message = 'گذرواژه شما باید بیشتر از ۸ کاراکتر باشد'
+                    return false
+                }
+                else {
+                    this.userError.password = false
+                    this.userError.password_message = ''
+                    return true
+                }
+            },
+
+            async checkMobile() {
+                await axios.post("{{url_for('auth.check_mobile')}}", {
+                    mobile: this.user.mobile
+                })
+                    .then((response) => {
+                        console.log(response.data)
+                        if (response.data.status == 'error') {
+                            this.userError.mobile = true
+                            this.userError.mobile_message = response.data.message
+                            return false
+                        } else if (response.data.status == 'success') {
+                            this.userError.mobile = false
+                            this.userError.mobile_message = null
+                            return true
+                        }
+                    })
+                    .catch((error) => console.log(error))
+            },
+
+            async loginForm() {
+                this.validateMobile()
+                this.validatePassword()
+                await this.checkMobile()
+                await axios.post("{{url_for('auth.login_view')}}", {
+                    mobile: this.user.mobile,
+                    password: this.user.password
+                })
+                    .then((response) => {
+                        console.log(response.data)
+                        if (response.data.status == 'success') {
+                            localStorage.setItem('current_user', JSON.stringify(response.data.data))
+                            Alpine.store('user').current_user = response.data.data
+                            Toast.fire({
+                                icon: response.data.status,
+                                title: response.data.message
+                            });
+                            setTimeout(() => {
+                                window.location.href = "{{url_for('admin.index_view')}}"
+                            }, 3000);
+                        }
+                    })
+            }
+        }))
+    })
+</script>

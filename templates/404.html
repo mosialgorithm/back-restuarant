@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block base_content %}
+<div class="custom-bg text-dark">
+    <div class="d-flex align-items-center justify-content-center min-vh-100 px-2">
+        <div class="text-center">
+            <h1 class="display-1 fw-bold">404</h1>
+            <p class="fs-2 fw-medium mt-4">متاسفانه صفحه موردنظر پیدا نشد</p>
+            <p class="mt-4 mb-5">صفحه انتخابی شما یا اشتباه است و یا اینکه به آدرس دیگری منتقل شده است</p>
+            <a href="{{url_for('home.home_view')}}" class="btn btn-light fw-semibold rounded-pill px-4 py-2 custom-btn">
+                صفحه اصلی 
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

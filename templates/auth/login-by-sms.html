@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}صفحه ورود با کد یکبار مصرف {% endblock %}
+{% block base_content %}
+<!-- <script src="{{url_for('static', filename='scripts/store.js')}}"></script> -->
+<section id="authentication" class="container">
+    <div class="row">
+        <div class="col-12 col-md-4 offset-md-4">
+            <div class="auth">
+                <div class="auth-header">
+                    <img src="{{url_for('static', filename='images/png/logo.png')}}" alt="logo">
+                    <p>
+                        <span class="fa fa-sign-in me-1"></span>
+                        <span>ورود با پیامک</span>
+                    </p>
+                </div>
+                <div class="auth-body">
+                    <form x-data="login_by_sms">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fa fa-phone-square"></i>
+                            </span>
+                            <input x-model="user.mobile" @blur="validateMobile" type="text" class="form-control"
+                                placeholder="شماره همراه" :class="{'is-invalid': userError.mobile}" :disabled="status">
+                            <div x-show="userError.mobile" x-text="userError.mobile_message" class="invalid-feedback">
+                            </div>
+                        </div>
+                        <div x-show="status" class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fa fa-keyboard-o"></i>
+                            </span>
+                            <input x-model="user.code" @blur="validateCode" type="text" class="form-control"
+                                placeholder="کد تایید" :class="{'is-invalid': userError.code}">
+                            <div x-show="userError.code" x-text="userError.code_message"
+                                class="invalid-feedback"></div>
+                        </div>
+                        <div class="text-center">
+                            <button x-show="!status" @click.prevent="sendSms" class="btn btn-block btn-outline-info w-50" :disabled="disabled"> ارسال کد</button>
+                            <button x-show="status" @click.prevent="loginSms" class="btn btn-block btn-outline-info w-50" :disabled="!disabled">  ورود موقت</button>
+                        </div>
+                    </form>
+                    <div class="mt-5">
+                        <div class="text-center my-3">
+                            <a href="{{url_for('auth.login_view')}}" class="text text-success w-50"> ورود با گذرواژه</a>
+                        </div>
+                        <div class="text-center my-3">
+                            <a href="{{url_for('auth.register_view')}}" class="text text-danger w-50"> ثبت نام در سایت</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="{{url_for('static', filename='scripts/store.js')}}"></script>
+<script src="{{url_for('static', filename='scripts/app.js')}}"></script>
+{% endblock %}

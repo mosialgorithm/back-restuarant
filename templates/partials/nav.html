@@ -1,0 +1,53 @@
+<!-- nav -->
+    <section id="nav">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
+                    aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="{{url_for('static', filename='images/png/logo.png')}}" width="75px" alt="logo">
+                </a>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{url_for('home.home_view')}}">صفحه اصلی</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="{{url_for('home.home_view')}}" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                منوی کافه
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{url_for('home.menu_view')}}">غذای اصلی</a></li>
+                                <li><a class="dropdown-item" href="{{url_for('home.menu_view')}}">پیش غذا </a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="{{url_for('home.menu_view')}}"> بستنی </a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url_for('home.about_us_view')}}">آشنایی با همکاران</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url_for('home.contact_us_view')}}" tabindex="-1" aria-disabled="true">تماس با ما</a>
+                        </li>
+                    </ul>
+                    <div id="shortcut-icon" class="d-flex">
+                        <a href="#">
+                            <span class="fa fa-user-circle-o fa-lg mx-2"></span>
+                        </a>
+                        <a href="{{url_for('home.cart_view')}}" class="position-relative">
+                            <span class="fa fa-shopping-basket fa-lg mx-2"></span>
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">5</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- end nav -->

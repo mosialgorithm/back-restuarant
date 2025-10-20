@@ -1,0 +1,91 @@
+{% extends 'home/index.html' %}
+{% block title %}  تماس با ما {% endblock %}
+{% block content %}
+<!-- contact us -->
+    <section id="contact-us">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-12">
+                    <p class="title">با ما در ارتباط باشید</p>
+                </div>
+                <div class="col-sm-12 col-md-5">
+                    <div id="form">
+                        <form>
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-4 col-form-label">نام و نام خانوادگی</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-4 col-form-label">ایمیل یا شماره همراه</label>
+                                <div class="col-sm-8">
+                                    <input type="text" readonly class="form-control">
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-4 col-form-label">پیام شما</label>
+                                <div class="col-sm-8">
+                                    <textarea rows="5" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="col-sm-12 col-md-4 offset-md-4">
+                                    <button class="btn btn-outline-success">ارسال</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="info">
+                        <ul>
+                            <li>
+                                <span class="fa fa-phone-square"></span>
+                                <span>031-54755896</span>
+                            </li>
+                            <li>
+                                <span class="fa fa-whatsapp"></span>
+                                <span>09355739363</span>
+                            </li>
+                            <li>
+                                <span class="fa fa-instagram"></span>
+                                <span>@mosii_ghorbani</span>
+                            </li>
+                            <li>
+                                <span class="fa fa-envelope"></span>
+                                <span>mosi.ghorbani@gmail.com</span>
+                            </li>
+                            <li>
+                                <span class="fa fa-map-marker"></span>
+                                <span>کاشان - خیابان امام - جنب مسجد المهدی - پلاک ۲۰</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end contact us -->
+
+    <!-- map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOVYRIgupAurZup5y1PRh8Ismb1A3lLao&libraries=places&callback=initMap" defer></script>
+    <script>
+        let map;
+        async function initMap() {
+            const { Map } = await google.maps.importLibrary("maps");
+            map = new Map(document.getElementById("map"), {
+                center: { lat: 33.9812111, lng: 51.4460055 }, // Example coordinates
+                zoom: 17,
+            });
+            const marker = new google.maps.Marker({
+                position: { lat: 33.9812111, lng: 51.4460055 }, // Position of the marker
+                map: map, // The map to which the marker is added
+                title: 'آدرس ما' // Text displayed when hovering over the marker
+            });
+        }
+        initMap();
+    </script>
+    <!-- end map -->
+{% endblock %}
